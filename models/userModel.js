@@ -30,7 +30,7 @@ const UserSchema = new mongoose.Schema({
   },
   role:{
     type:Number,
-    default:0
+    default: 0
   }
 },{timestamps:true});
 ///when a user will be created time stamp will be added

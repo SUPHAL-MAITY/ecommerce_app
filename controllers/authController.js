@@ -10,7 +10,7 @@ export const registerController= async(req,res)=>{
         const {name,email,password,phone,address,role}= req.body
         ///validation
        
-        if(!(name && email && password && phone && address && role)){
+        if(!(name && email && password && phone && address )){
             return res.status(400).send({error:"All field is compulsory"})
         }
 
@@ -92,7 +92,13 @@ export const loginController = async(req,res)=>{
         res.status(200).send({
             success:true,
             message:"logged in successfully",
-            user,
+            user:{
+                name:user.name,
+                email:user.email,
+                phone:user.phone,
+                address:user.address
+
+            },
             token
         })
 
@@ -112,6 +118,12 @@ export const loginController = async(req,res)=>{
         })
       
     }
+
+}
+
+
+export const testController = async(req,res)=>{
+    res.send("protected routes")
 
 }
 
