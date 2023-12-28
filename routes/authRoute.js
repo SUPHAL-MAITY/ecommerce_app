@@ -1,5 +1,5 @@
 import express from "express"
-import {registerController} from "../controllers/authController.js"
+import {registerController,loginController} from "../controllers/authController.js"
 
 
 
@@ -7,10 +7,15 @@ import {registerController} from "../controllers/authController.js"
 const router=express.Router()
 
 
-///routing
+///routing end points
+
 //Register method ||| method Post
 
 router.post("/register",registerController)
+
+///login || POST method
+
+router.post("/login",loginController)
 
 
 

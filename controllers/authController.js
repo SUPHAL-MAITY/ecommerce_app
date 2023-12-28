@@ -1,5 +1,6 @@
 import User from "../models/userModel.js"
-import {hashPassword} from "../helpers/authHelper.js"
+import {hashPassword,comparePassword} from "../helpers/authHelper.js"
+import  jwt  from 'jsonwebtoken'
 
 
 
@@ -50,4 +51,67 @@ export const registerController= async(req,res)=>{
 
 }
 
+
+export const loginController = async(req,res)=>{
+    try {
+        const {email,password}=req.body
+        ////validation
+        if(!(email && password)){
+            return res.status(404).send({
+                success:false,
+                message:"Please enter all credentials"
+            })
+        }
+
+        /////check user
+
+        const user= await User.findOne({email})
+
+        if(!user){
+            return res.status(404).send({
+                success:false,
+                message:"Email is not registered"
+            })
+        }
+        
+        ///// match the password 
+
+        const match = await comparePassword(password,user.password)
+        if(!match){
+            return res.status(200).send({
+                success:false,
+                message:"Invalid password"
+                
+            })   
+        }
+
+        const token=jwt.sign({
+            id: user._id
+          }, process.env.JWT_SECRET, { expiresIn: '7d' });
+
+        res.status(200).send({
+            success:true,
+            message:"logged in successfully",
+            user,
+            token
+        })
+
+
+
+
+
+
+
+        
+    } catch (error) {
+        res.status(500).send({
+            success:false,
+            message:"Error in login ",
+            error
+
+        })
+      
+    }
+
+}
 
