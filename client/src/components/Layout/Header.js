@@ -15,16 +15,19 @@ const Header = () => {
             <Link to="/" className="navbar-brand" >🛒 Ecommerce App</Link >
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                <Link to="/" className="nav-link active"  >Home</Link >
+                <Link to="/" className="nav-link "  >Home</Link >
                 </li>
                 <li className="nav-item">
-                <Link to="/register" className="nav-link active"  >SignUP</Link >
+                <Link to="/category" className="nav-link "  >Category</Link >
                 </li>
                 <li className="nav-item">
-                <Link to="/login" className="nav-link active"  >LogIn</Link >
+                <Link to="/register" className="nav-link "  >SignUP</Link >
                 </li>
                 <li className="nav-item">
-                <Link to="/cart" className="nav-link active"  >Cart(0)</Link >
+                <Link to="/login" className="nav-link "  >LogIn</Link >
+                </li>
+                <li className="nav-item">
+                <Link to="/cart" className="nav-link "  >Cart(0)</Link >
                 </li>
                 
             </ul>
