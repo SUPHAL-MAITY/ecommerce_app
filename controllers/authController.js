@@ -5,13 +5,14 @@ import  jwt  from 'jsonwebtoken'
 
 
 
+
 export const registerController= async(req,res)=>{
     try {
         const {name,email,password,phone,address,role}= req.body
         ///validation
        
         if(!(name && email && password && phone && address )){
-            return res.status(400).send({error:"All field is compulsory"})
+            return res.status(400).send({message:"All field is compulsory"})
         }
 
        
@@ -21,7 +22,7 @@ export const registerController= async(req,res)=>{
         const existingUser= await User.findOne({email})
 
         if(existingUser){
-            res.status(401).send({error:"The User already exists"})
+             return res.status(401).send({ success:false, message:"The User already exists"})
         }
 
         ///encrypt the password
