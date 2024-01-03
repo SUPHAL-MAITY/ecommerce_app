@@ -1,8 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../context/auth'
+import toast from 'react-hot-toast'
+
+
 
 
 const Header = () => {
+
+  const [auth,setAuth]=useAuth()
+
+
+   const handleLogOut=()=>{
+    setAuth({
+      ...auth,user:null ,token:""
+    })
+    localStorage.removeItem("auth")
+    toast.success("Logged out successfully")
+
+   }
   return (
     <>
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,12 +36,24 @@ const Header = () => {
                 <li className="nav-item">
                 <Link to="/category" className="nav-link "  >Category</Link >
                 </li>
-                <li className="nav-item">
+                {
+                  !auth.user ? (<>
+                  <li className="nav-item">
                 <Link to="/register" className="nav-link "  >SignUP</Link >
                 </li>
                 <li className="nav-item">
                 <Link to="/login" className="nav-link "  >LogIn</Link >
                 </li>
+                  </>):(
+                    <>
+                    <li className="nav-item">
+                <Link  onClick={handleLogOut} to="/login" className="nav-link "  >Log out</Link >
+                </li>
+                    
+                    </>
+                  )
+                }
+                
                 <li className="nav-item">
                 <Link to="/cart" className="nav-link "  >Cart(0)</Link >
                 </li>
