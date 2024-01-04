@@ -8,6 +8,8 @@ import Contact from './pages/Contact';
 import Policy from './pages/Policy';
 import Register from './pages/Auth/Register';
 import Login from './pages/Auth/Login';
+import Dashboard from './user/Dashboard';
+import PrivateRoute from './components/Routes/Private';
 
 
 
@@ -21,12 +23,18 @@ import {
   
 } from "react-router-dom";
 
+
+
 function App() {
   return (
     <>
      
       <Routes>
       <Route path="/" element={<Home/>} ></Route>
+      <Route path="/dashboard" element={<PrivateRoute/>} >
+        <Route path=""  element={< Dashboard/>} />
+      </Route>
+
       <Route path="/about" element={<About />} ></Route>
       <Route path="/contact" element={<Contact />} ></Route>
       <Route path="/policy" element={<Policy />} ></Route>
