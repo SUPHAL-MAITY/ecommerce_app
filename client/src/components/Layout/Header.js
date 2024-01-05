@@ -33,6 +33,21 @@ const Header = () => {
                 <li className="nav-item">
                 <Link to="/" className="nav-link "  >Home</Link >
                 </li>
+               <li className="nav-item dropdown">
+                  <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {auth?.user?.name}
+                  </a>
+                  <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><Link className="dropdown-item" to="/dashboard">Dashboard</Link></li>
+                    <li ><Link  onClick={handleLogOut} to="/login" className="dropdown-item"  >Log out</Link ></li>
+                    
+                  </ul>
+              </li>
+
+
+
+
+
                 <li className="nav-item">
                 <Link to="/category" className="nav-link "  >Category</Link >
                 </li>
@@ -46,9 +61,7 @@ const Header = () => {
                 </li>
                   </>):(
                     <>
-                    <li className="nav-item">
-                <Link  onClick={handleLogOut} to="/login" className="nav-link "  >Log out</Link >
-                </li>
+                    
                     
                     </>
                   )

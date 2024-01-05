@@ -8,10 +8,10 @@ import  jwt  from 'jsonwebtoken'
 
 export const registerController= async(req,res)=>{
     try {
-        const {name,email,password,phone,address,role}= req.body
+        const {name,email,password,phone,address,answer}= req.body
         ///validation
        
-        if(!(name && email && password && phone && address )){
+        if(!(name && email && password && phone && address && answer)){
             return res.status(400).send({message:"All field is compulsory"})
         }
 
@@ -29,7 +29,7 @@ export const registerController= async(req,res)=>{
         const encryptedPassword= await hashPassword(password)
 
         ////save in the db with encrypted db
-        const user=await User.create({name,email, password:encryptedPassword, phone ,address , role})
+        const user=await User.create({name,email, password:encryptedPassword, phone ,address , answer})
         
         res.status(201).send({
             success:true,
@@ -125,6 +125,47 @@ export const loginController = async(req,res)=>{
 
 export const testController = async(req,res)=>{
     res.send("protected routes")
+
+}
+
+
+export const forgotPasswordController= async(req,res)=>{
+    try {
+        const {email,answer,newPassword} = req.body
+        if(!(email && answer && newPassword)){
+            res.status(400).send("All fields are necessary")
+        }
+
+        ////check 
+        const user= await User.findOne({email,answer})
+        if(!user){
+            return res.status(404).send({
+                success:false,
+                message:"wrong email or answer",
+            })
+        }
+
+        const hashed= await  hashPassword(newPassword)
+
+        await User.findByIdAndUpdate(user._id,{password:hashed})
+        res.status(200).send({
+            success:true,
+            message:"password reset successfully"
+        })
+
+
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success: false,
+            message:"something went wrong",
+            error
+
+        })
+
+        
+    }
 
 }
 

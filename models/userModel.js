@@ -28,10 +28,16 @@ const UserSchema = new mongoose.Schema({
     type:String,
     required:true
   },
+  answer:{
+    type:String,
+    required:true
+  },
   role:{
     type:Number,
     default: 0
   }
+
+
 },{timestamps:true});
 ///when a user will be created time stamp will be added
 

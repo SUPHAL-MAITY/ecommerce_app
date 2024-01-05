@@ -39,7 +39,7 @@ const handleSubmit= async (e)=>{
  
  
 }
-console.log(process.env.REACT_APP_API)
+
 
 
   return (
@@ -56,8 +56,16 @@ console.log(process.env.REACT_APP_API)
                 <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} className="form-control" id="exampleInputPassword1" placeholder='Enter your Password'  required />
               </div>
               
+              <div className="mb-3" >
+              <button type="submit" style={{width:"317px"}} className="btn btn-primary">LogIn</button>
+
+              </div>
               
-              <button type="submit" className="btn btn-primary">LOGIN</button>
+              <div className="mb-3">
+              <button type="button" style={{width:"317px"}} onClick={()=>navigate("/forgot-password")} className="btn btn-primary">Forgot Password ?</button>
+
+              </div>
+              
           </form>
 
 

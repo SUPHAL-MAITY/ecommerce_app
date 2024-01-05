@@ -10,6 +10,7 @@ import Register from './pages/Auth/Register';
 import Login from './pages/Auth/Login';
 import Dashboard from './user/Dashboard';
 import PrivateRoute from './components/Routes/Private';
+import ForgotPassword from './pages/Auth/ForgotPassword';
 
 
 
@@ -22,6 +23,7 @@ import {
   Routes      
   
 } from "react-router-dom";
+
 
 
 
@@ -40,6 +42,7 @@ function App() {
       <Route path="/policy" element={<Policy />} ></Route>
       <Route path="/register" element={<Register />} ></Route>
       <Route path="/login" element={<Login />} ></Route>
+      <Route path="/forgot-password" element={<ForgotPassword />} ></Route>
       <Route path="*" element={<PageNotFound />} ></Route>
         
 
