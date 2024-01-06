@@ -8,13 +8,11 @@ import Contact from './pages/Contact';
 import Policy from './pages/Policy';
 import Register from './pages/Auth/Register';
 import Login from './pages/Auth/Login';
-import Dashboard from './user/Dashboard';
+import Dashboard from './pages/user/Dashboard';
 import PrivateRoute from './components/Routes/Private';
 import ForgotPassword from './pages/Auth/ForgotPassword';
-
-
-
- 
+import AdminRoute from './components/Routes/AdminRoutes';
+import AdminDashboard from './pages/Admin/AdminDashboard';
 
 
 import {
@@ -23,6 +21,11 @@ import {
   Routes      
   
 } from "react-router-dom";
+import CreateCategory from './pages/Admin/CreateCategory';
+import CreateProduct from './pages/Admin/CreateProduct';
+import CreateUsers from './pages/Admin/CreateUsers';
+import Orders from './pages/user/Orders';
+import Profile from './pages/user/Profile';
 
 
 
@@ -34,7 +37,17 @@ function App() {
       <Routes>
       <Route path="/" element={<Home/>} ></Route>
       <Route path="/dashboard" element={<PrivateRoute/>} >
-        <Route path=""  element={< Dashboard/>} />
+        <Route path="user"  element={< Dashboard />} />
+        <Route path="user/orders"  element={< Orders/>} />
+        <Route path="user/profile"  element={<Profile />} />
+      </Route>
+
+      <Route path="/dashboard" element={<AdminRoute/>} >
+        <Route path="admin"  element={< AdminDashboard/>} />
+        <Route path="admin/create-category"  element={< CreateCategory/>} />
+        <Route path="admin/create-product"  element={< CreateProduct />} />
+        <Route path="admin/create-users"  element={< CreateUsers />} />
+
       </Route>
 
       <Route path="/about" element={<About />} ></Route>
@@ -43,6 +56,8 @@ function App() {
       <Route path="/register" element={<Register />} ></Route>
       <Route path="/login" element={<Login />} ></Route>
       <Route path="/forgot-password" element={<ForgotPassword />} ></Route>
+      
+
       <Route path="*" element={<PageNotFound />} ></Route>
         
 
