@@ -38,8 +38,8 @@ const handleSubmit=async(e)=>{
   const getAllCategory=async()=>{
     try {
       const {data}= await axios.get(`${process.env.REACT_APP_API}/api/v1/category/get-category`)
-      if(data.success){
-        setCategories(data.category)
+      if(data?.success){
+        setCategories(data?.category)
       }
       
     } catch (error) {
@@ -124,7 +124,7 @@ const handleSubmit=async(e)=>{
                         categories?.map((c)=>(
                           <>
                           <tr>
-                            <td key={c._id}>{c.name} </td>
+                            <td key={c._id} >{c.name} </td>
                             <td > 
                               <button className='btn btn-primary ms-2' onClick={()=>{setVisible(true);setUpdatedName(c.name);setSelected(c)}} >Edit</button>
                               <button className='btn btn-danger ms-2'  onClick={()=>{handleDelete(c._id)}}>Delete</button>
@@ -142,7 +142,7 @@ const handleSubmit=async(e)=>{
 
           </div>
 
-        <Modal  onCancel={()=>setVisible(false)} footer={null} visible={visible} >
+        <Modal  onCancel={()=>setVisible(false)} footer={null} open={visible} >
           <CategoryForm value={updatedName} setValue={setUpdatedName} handleSubmit={handleUpdate}/>
         </Modal>
           
