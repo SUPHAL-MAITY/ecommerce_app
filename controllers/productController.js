@@ -115,6 +115,8 @@ export const  updateProductController=async(req,res)=>{
         
     }
     }
+
+    
 export const getProductController=async(req,res)=>{
     try {
         const products=await productModel.find({}).populate("category").select("-photo").limit(12).sort({createdAt:-1})
@@ -303,3 +305,33 @@ export const searchProductController=async(req,res)=>{
     }
 
 }
+
+
+
+///similar products
+export const relatedProductController=async(req,res)=>{
+    try {
+        const {pid,cid}=req.params
+        const products= await productModel.find({
+            category:cid,
+            _id:{$ne:pid}
+        
+        }).select("-photo").limit(3).populate("category")
+
+        res.status(200).send({
+            success:true,
+            products
+        })
+        
+    } catch (error) {
+        console.log(error)
+        res.status(400).send({
+            success:false,
+            message:"Error in getting related product",
+            error
+        })
+        
+    }
+}
+
+
