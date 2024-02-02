@@ -4,13 +4,15 @@ import { useAuth } from '../../context/auth'
 import toast from 'react-hot-toast'
 import Searchinput from '../Form/Searchinput'
 import useCategory from '../../hooks/useCategory'
-
+import { useCart } from '../../context/Cart'
+import {Badge }  from "antd"
 
 
 
 const Header = () => {
 
   const [auth,setAuth]=useAuth()
+  const [cart]=useCart()
   const categories=useCategory()
 
 
@@ -88,7 +90,11 @@ const Header = () => {
                 }
                 
                 <li className="nav-item">
-                <Link to="/cart" className="nav-link "  >Cart(0)</Link >
+                  <Badge count={cart?.length} showZero>
+                  <Link to="/cart" className="nav-link "  >Cart</Link >
+
+                  </Badge>
+                
                 </li>
                 
             </ul>
