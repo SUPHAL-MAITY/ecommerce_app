@@ -30,6 +30,8 @@ import Products from './pages/Admin/Products';
 import UpdateProduct from './pages/Admin/UpdateProduct';
 import Search from './pages/Search';
 import ProducDetails from './pages/ProducDetails';
+import Categories from './pages/Categories';
+import CategoryProduct from './pages/CategoryProduct';
 
 
 
@@ -41,6 +43,8 @@ function App() {
       <Routes>
       <Route path="/" element={<Home/>} ></Route>
       <Route path="/product/:slug" element={<ProducDetails/>} ></Route>
+      <Route path="/categories" element={<Categories/>} ></Route>
+      <Route path="/category/:slug" element={<CategoryProduct/>} ></Route>
       <Route path="/search" element={<Search/>} ></Route>
       <Route path="/dashboard" element={<PrivateRoute/>} >
         <Route path="user"  element={< Dashboard />} />
