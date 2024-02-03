@@ -20,8 +20,8 @@ export const requireSignIn=(req,res,next)=>{
 
 export const isAdmin = async(req,res,next)=>{
     try {
-        console.log(req.user.id)
-        const user= await User.findById(req.user.id)
+        console.log(req.user._id)
+        const user= await User.findById(req.user._id)
         
         if(user.role !==1 ){
             return res.status(401).send({

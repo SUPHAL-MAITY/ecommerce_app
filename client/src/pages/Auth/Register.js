@@ -26,12 +26,12 @@ const handleSubmit= async (e)=>{
     }
   } catch (error) {
     console.log(error)
+    toast.error("Something went wrong")
     
   }
  
- 
 }
-console.log(process.env.REACT_APP_API)
+
 
 
   return (
