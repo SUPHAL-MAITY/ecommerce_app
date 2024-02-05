@@ -45,7 +45,7 @@ router.put("/profile",requireSignIn,updateProfileController)
 
 
 ///orders
-// router.get("/orders",requireSignIn,getOrdersController)
+router.get("/orders",requireSignIn,getOrdersController)
 
 
 export default router
