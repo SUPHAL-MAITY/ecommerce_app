@@ -33,6 +33,8 @@ import ProducDetails from './pages/ProducDetails';
 import Categories from './pages/Categories';
 import CategoryProduct from './pages/CategoryProduct';
 import CartPage from './pages/CartPage';
+import AdminMenu from './components/Layout/AdminMenu';
+import AdminOrders from './pages/Admin/AdminOrders';
 
 
 
@@ -61,6 +63,7 @@ function App() {
         <Route path="admin/get-singleproduct/:slug"  element={< UpdateProduct />} />
         <Route path="admin/products"  element={< Products />} />
         <Route path="admin/create-users"  element={< CreateUsers />} />
+        <Route path="admin/orders"  element={< AdminOrders />} />
 
       </Route>
 
