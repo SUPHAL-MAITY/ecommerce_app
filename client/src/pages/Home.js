@@ -164,7 +164,7 @@ const Home = () => {
   return (
     <Layout>
         <img
-        src="/images/banner.png"
+        src="/images/banner1.jpg"
         className="banner-img"
         alt="bannerimage"
         width={"100%"}
@@ -186,7 +186,7 @@ const Home = () => {
 
             <h4 className="text-center mt-4">Filter By Price</h4>
             <div className="d-flex flex-column">
-                <Radio.Group onChange={(e)=>setRadio(e.target.value)}>
+                <Radio.Group  onChange={(e)=>setRadio(e.target.value)}>
                   {Prices.map(p=>
                   <div key={p._id}>
                     <Radio value={p.array}>{p.name}</Radio>

@@ -1,16 +1,23 @@
 .banner-img {
-    /* margin-top: 60px; */
+    
     height: 150px;
+    
   }
   
   .home-page h1 {
     color: rgb(14, 0, 0);
     font-family: "Playfair Display", serif;
+    line-height: 60px;
   }
   
   .home-page {
+    
     display: flex;
     flex-wrap: wrap;
+    background-color: #fbf7f2;
+    margin: 0;
+    padding: 0;
+    margin-top: -9px !important;
   }
   .home-page .card {
     background-color: rgba(179, 18, 18, 0.097);

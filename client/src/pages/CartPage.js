@@ -95,12 +95,12 @@ const handlePayment=async()=>{
 
   return (
     <Layout>
-        <div className="container">
+        <div className="cart-page">
             <div className="row">
                 <div className="col-md-12">
                     <h1 className="text-center bg-light p-2 mb-1">
-                        {`Hello ${auth?.token && auth?.user?.name}`}
-                    </h1>
+                        {!auth?.user ? " Hello Guest": `Hello ${auth?.token && auth?.user?.name}`}
+                    
                     <h4 className="text-center">
                         { cart?.length>0 
                         ?`you have ${cart.length} items in your cart 
@@ -109,14 +109,16 @@ const handlePayment=async()=>{
                         }
 
                     </h4>
+                    </h1>
                 </div>
                 
             </div>
-            <div className="row">
-                <div className="col-md-9">
-                    <div className="row">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-7 p-0 m-0">
+                   
                         {cart?.map(p=>(
-                            <div className="row card mb-2 flex-row">
+                            <div className="row card  flex-row">
                                 <div className="col-md-4">
                                 <img  src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`} className="card-img-top "  alt={p.name} width="80px" height="120px"/>
 
@@ -192,7 +194,7 @@ const handlePayment=async()=>{
               }
               onInstance={instance=>setInstance(instance)}
               />
-              <button className='btn btn-primary' onClick={handlePayment} disabled={!loading || !instance || !auth?.user?.address}>{loading ?"Processing...":"Make Payment"}</button>
+              <button className='btn btn-primary p-3' onClick={handlePayment} disabled={loading || !instance || !auth?.user?.address}>{loading ?"Processing...":"Make Payment"}</button>
                 </>
               }
               
