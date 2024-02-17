@@ -51,17 +51,17 @@ const Header = () => {
               </li>
 
               <li className="nav-item dropdown">
-                    <Link className="nav-link dropdown-toggle" to="/categories" id="navbarDropdown"  data-bs-toggle="dropdown" >
+                    <Link className="nav-link " to="/categories"   >
                      Categories
                     </Link>
-                    <ul className="dropdown-menu" >
+                    {/* <ul className="dropdown-menu" >
                     <li ><Link className="dropdown-item" to="/categories" >All Categories</Link></li>
                         {categories?.map((c)=>(
                           
                           <li key={c._id}><Link className="dropdown-item" to={`/categories/${c.slug}`} >{c.name}</Link></li>
                         
                           ))}
-                    </ul>
+                    </ul> */}
 
                    
                     
