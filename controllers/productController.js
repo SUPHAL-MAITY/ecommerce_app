@@ -3,7 +3,7 @@ import categoryModel from "../models/categoryModel.js"
 import slugify from "slugify"
 import fs from "fs"
 import braintree from "braintree"
-import orderModel from "../models/categoryModel.js"
+import orderModel from "../models/orderModel.js"
 import dotenv from "dotenv"
 
 
@@ -380,19 +380,16 @@ export const productCategoryController=async(req,res)=>{
 ////payment gateway
 export const brainTreeTokenController=async(req,res)=>{
     try {
-        gateway.clientToken.generate({},function(err,response){
-            if(err){
-                res.status(500).send(err);
-
-            }else{
-                res.send(response)
-            }
-        })
-        
-    } catch (error) {
-        console.log(error)
-        
-    }
+        gateway.clientToken.generate({}, function (err, response) {
+          if (err) {
+            res.status(500).send(err);
+          } else {
+            res.send(response);
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
 
 }
 ///payment

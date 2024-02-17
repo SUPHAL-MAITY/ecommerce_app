@@ -1,5 +1,5 @@
 import User from "../models/userModel.js"
-import orderModel from "../models/userModel.js"
+import orderModel from "../models/orderModel.js"
 import {hashPassword,comparePassword} from "../helpers/authHelper.js"
 import  jwt  from 'jsonwebtoken'
 
@@ -248,7 +248,7 @@ export const getOrdersController=async(req,res)=>{
 
 export const getAllordersController=async(req,res)=>{
     try {
-        const orders= await orderModel.find({}).populate("products","-photo").populate("buyer","name")
+        const orders= await orderModel.find({}).populate("products","-photo").populate("buyer","name");
         res.json(orders)
 
 
