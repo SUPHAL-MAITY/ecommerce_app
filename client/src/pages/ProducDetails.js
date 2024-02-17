@@ -3,8 +3,11 @@ import React ,{useState,useEffect}  from 'react'
 import Layout from '../components/Layout/Layout'
 import axios from "axios"
 import { useParams } from 'react-router-dom'
+import {useCart} from "../context/Cart"
+import toast from 'react-hot-toast';
 
 const ProducDetails = () => {
+  const [cart,setCart]=useCart()
   const params=useParams()
   const [product,setProduct]=useState({})
   const[relatedProducts,setRelatedProducts]=useState([])
@@ -16,11 +19,12 @@ const ProducDetails = () => {
   },[params?.slug])
 
 
-  ///get products
+  ///get single  product
   const getProduct=async()=>{
     try {
       const {data}=await axios.get(`${process.env.REACT_APP_API}/api/v1/product/get-singleproduct/${params.slug}`)
-      
+      // console.log("hello",params)
+      // console.log(data)
       setProduct(data?.product);
       getSimilarProducts(data?.product._id,data?.product.category._id)
       
@@ -49,8 +53,7 @@ const ProducDetails = () => {
     <Layout>
       <div className="row container">
         <div className="col-md-6">
-          
-          
+                   
         <img  src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${product._id}`} className="card-img-top " alt={product.name} height="250px" width="250px" />
           </div>
         <div className="col-md-6">
@@ -59,7 +62,17 @@ const ProducDetails = () => {
           <h6>Description: {product.description}</h6>
           <h6>Price: ₹{product.price}</h6>
           <h6>Category :{product?.category?.name} </h6>
-          <button  className="btn btn-secondary ms-1">Add to Cart</button>
+          <button  className="btn btn-dark ms-1" 
+                        onClick={()=>{
+                          setCart([...cart,product])
+                          localStorage.setItem(
+                            "cart",
+                            JSON.stringify([...cart,product])
+      
+                          )
+                          toast.success("Item added to cart")
+                        }}
+          >Add to Cart</button>
           
         </div>
       </div>
@@ -81,7 +94,16 @@ const ProducDetails = () => {
                         <h5 className="card-title">{p.name}</h5>
                         <p className="card-text">{p.description.substring(0,30)}</p>
                         <p className="card-text">₹{p.price}</p>
-                        <button  className="btn btn-secondary ms-1">Add to Cart</button>
+                        <button  className="btn btn-dark ms-1" 
+                        onClick={()=>{
+                          setCart([...cart,p])
+                          localStorage.setItem(
+                            "cart",
+                            JSON.stringify([...cart,p])
+      
+                          )
+                          toast.success("Item added to cart")
+                        }} >Add to Cart</button>
                   
                   </div>
                 </div>

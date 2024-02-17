@@ -21,7 +21,7 @@
   }
   .home-page .card {
     background-color: rgba(179, 18, 18, 0.097);
-    width: 18rem;
+    width: 30% !important;
   }
   .home-page .card-name-price {
     display: flex;

@@ -81,7 +81,7 @@ useEffect(()=>{
       productData.append("quantity", quantity);
       photo && productData.append("photo", photo);
       productData.append("category", category);
-      const { data } = await axios.put( `${process.env.REACT_APP_API}/api/v1/product//update-product/${id}`,productData);
+      const { data } = await axios.put( `${process.env.REACT_APP_API}/api/v1/product/update-product/${id}`,productData);
       if (data?.success) {
         toast.success("Product Updated Successfully");
         navigate("/dashboard/admin/products")

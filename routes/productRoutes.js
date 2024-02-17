@@ -18,7 +18,7 @@ router.put("/update-product/:pid",requireSignIn,isAdmin,formidable(),updateProdu
 router.get("/get-product",getProductController)
 
 
-////single products
+////single product
 
 router.get("/get-singleproduct/:slug",getSingleProductController)
 

@@ -84,13 +84,12 @@ try {
 
 export const  updateProductController=async(req,res)=>{
     try {
-        const {name,slug,description,price,category,quantity,shipping}=req.fields
+        const {name,description,price,category,quantity,shipping}=req.fields
         const {photo}=req.files
     
         ///validation
         switch(true){
-            case !name:
-                return res.status(500).send({error:"Name is required"});
+                
                 case !name:
                     return res.status(500).send({error:"Name is required"});    
                 case !description:
@@ -101,7 +100,7 @@ export const  updateProductController=async(req,res)=>{
                     return res.status(500).send({error:"Category is required"});    
                 case !quantity:
                     return res.status(500).send({error:"Quantity is required"});    
-                case !photo || photo.size>1000000:
+                case photo && photo.size>1000000:
                     return res.status(500).send({error:"Photo  is required and should be less than 1 mb"});    
     
         }
@@ -165,6 +164,7 @@ export const getProductController=async(req,res)=>{
 export const getSingleProductController=async(req,res)=>{
     try {
         const product=await productModel.findOne({slug:req.params.slug}).select("-photo").populate("category")
+        // console.log("hello",req.params)
         res.status(200).send({
             success:true,
             message:"Single Product fetched",
@@ -189,6 +189,7 @@ export const getSingleProductController=async(req,res)=>{
 export const productPhotoController=async(req,res)=>{
     try {
         const product=await productModel.findById(req.params.pid).select("photo")
+        // console.log(product)
         if(product.photo.data){
             res.set("Content-type",product.photo.contentType);
             return res.status(200).send(product.photo.data)
@@ -282,7 +283,7 @@ export const productCountController=async(req,res)=>{
 ////product list based on page
 export const productListController=async(req,res)=>{
     try {
-        const perPage=1
+        const perPage=6
         const page= req.params.page? req.params.page:1;
         const products=await productModel.find({}).select("-photo").skip((page-1)*perPage).limit(perPage).sort({createdAt:-1})
         res.status(200).send({

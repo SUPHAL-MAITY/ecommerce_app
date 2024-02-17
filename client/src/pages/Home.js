@@ -9,7 +9,7 @@ import { Prices } from '../components/Prices';
 import {useCart} from "../context/Cart"
 import "../styles/HomePage.css";
 import { AiOutlineReload } from "react-icons/ai"
-// client\src\styles\HomePage.css
+
 
 
 const Home = () => {
@@ -204,19 +204,17 @@ const Home = () => {
 
 
           
-          <div className="col-md-9">
+          <div className="col-md-9 ">
             {/* {JSON.stringify(checked,null ,4)}
             {JSON.stringify(radio,null ,4)} */}
             <h1 className="text-center">All Products</h1> 
           <div className="d-flex flex-wrap">
           {products?.map((p)=>(
                    
-            <div className="card m-2 "  key={p._id}>
+            <div className="card" style={{width:"33%"}} key={p._id}>
                 <img  src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`} className="card-img-top " alt={p._id} />
-            <div className="card-body">
-              <div className="card-name-price">
-
-              
+                <div className="card-body">
+                <div className="card-name-price">             
                   <h5 className="card-title">{p.name}</h5>
                   <h5 className="card-title card-price">₹{p.price}</h5>
                 </div>

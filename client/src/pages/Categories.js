@@ -10,12 +10,24 @@ const Categories = () => {
     const categories=useCategory()
   return (
     <Layout>
-        <div className="container">
-            <div className="row">
+         <img
+        src="../../images/banner2.jpg"
+        className="banner-img"
+        alt="bannerimage"
+        width={"100%"}
+      />
+        <div className="container" style={{ marginTop: "10px" }}>
+            <div className="row container">
                 {categories.map((c)=>(
-                    <div className="col-md-6 mt-5 mb-5 gx-3 gy-3">
+                    <div className="col-md-4 mt-5 mb-5 gx-3 gy-3" key={c._id}>
+                        <div >
+                        <Link  to={`/category/${c.slug}`} >
+                            <img src={`../../../images/${c.slug}.jpg` } style={{width:"70%"}} alt="" />
+                            </Link>
+
+                        </div>
                         
-                            <Link className='btn btn-primary' to={`/category/${c.slug}`} >{c.name}</Link>
+                           
                         
                     </div>
 

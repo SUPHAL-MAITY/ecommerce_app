@@ -44,10 +44,10 @@ useEffect(()=>{
                 {products?.map((p)=>(
                     <Link to={`/dashboard/admin/get-singleproduct/${p.slug}`} className="product-link">
                         <div className="card m-2 "  style={{width: '18rem'}} key={p._id}>
-                            <img  src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`} className="card-img-top " alt="..." />
+                            <img  src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`} style={{height: '250px'}}  className="card-img-top" alt="..." />
                         <div className="card-body">
                         <h5 className="card-title">{p.name}</h5>
-                        <p className="card-text">{p.description}</p>
+                        <p className="card-text">{p.description.substring(0,10)}</p>
                         
                     </div>
                     </div>
