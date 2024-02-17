@@ -9,6 +9,8 @@ import { Prices } from '../components/Prices';
 import {useCart} from "../context/Cart"
 import "../styles/HomePage.css";
 import { AiOutlineReload } from "react-icons/ai"
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
 
 
 
@@ -22,6 +24,17 @@ const Home = () => {
   const [total,setTotal]=useState(0)
   const [page,setPage]=useState(1)
   const [loading,setLoading]=useState(false)
+  const handleDragStart = (e) => e.preventDefault();
+
+
+
+  const items = [
+    <img src="../../images/banner1.jpg" style={{height:"180px",width:"100%"}} onDragStart={handleDragStart} role="presentation" />,
+    <img src="../../images/banner2.jpg" style={{height:"180px",width:"100%"}} onDragStart={handleDragStart} role="presentation" />,
+    <img src="../../images/banner3.jpg" style={{height:"180px",width:"100%"}} onDragStart={handleDragStart} role="presentation" />,
+    
+  ];
+
 
 
 
@@ -163,12 +176,14 @@ const Home = () => {
 
   return (
     <Layout>
-        <img
-        src="/images/banner1.jpg"
+        {/* <img
+        src="../../images/banner1.jpg"
         className="banner-img"
         alt="bannerimage"
         width={"100%"}
-      />
+      /> */}
+
+     <AliceCarousel mouseTracking items={items} />
       {/* banner image */}
         <div className="container-fluid row mt-3 home-page">
           <div className="col-md-3 filters">
@@ -207,7 +222,7 @@ const Home = () => {
           <div className="col-md-9 ">
             {/* {JSON.stringify(checked,null ,4)}
             {JSON.stringify(radio,null ,4)} */}
-            <h1 className="text-center">All Products</h1> 
+            {/* <h1 className="text-center">All Products</h1>  */}
           <div className="d-flex flex-wrap">
           {products?.map((p)=>(
                    
