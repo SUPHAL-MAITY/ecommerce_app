@@ -82,7 +82,8 @@ const handlePayment=async()=>{
     setLoading(false)
     localStorage.removeItem("cart")
     setCart([])
-    navigate("/dasboard/user/orders")
+    navigate("/dashboard/user/orders")
+   
     toast.success("Payment Completed Successfully")
     
   } catch (error) {
